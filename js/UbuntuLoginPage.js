@@ -1,92 +1,82 @@
+function updateClock() {
+  const now = new Date();
+  const time = new Intl.DateTimeFormat(undefined, {
+    hour: "2-digit",
+    hourCycle: "h23",
+    minute: "2-digit",
+  }).format(now);
+  const date = new Intl.DateTimeFormat(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  }).format(now);
 
-window.onload = function() {
-    clock();
-        function clock() {
-            var now = new Date();
-            var TwentyFourHour = now.getHours();
-            var hour = now.getHours();
-            var min = now.getMinutes();
-            var day = now.getDay();
-            var month = now.getMonth();
-            var date = now.getDate();
-            if (min < 10) {
-                min = "0" + min;
-            }
-            if (hour > 12) {
-                hour = hour - 12;
-            }
-            if (hour < 10){
-                hour = "0" + hour
-            }   
-            if(hour==0){ 
-                hour=12;
-            }
-            if(day==1){
-                day="Monday"
-            }
-            if(day==2){
-                day="Tuesday"
-            }
-            if(day==3){
-                day="Wednesday"
-            }
-            if(day==4){
-                day="Thursday"
-            }
-            if(day==5){
-                day="Friday"
-            }
-            if(day==6){
-                day="Saturday"
-            }
-            if(month==0){
-                month="Jan"
-            }
-            if(month==1){
-                month="Feb"
-            }
-            if(month==2){
-                month="March"
-            }
-            if(month==3){
-                month="April"
-            }
-            if(month==4){
-                month="May"
-            }
-            if(month==5){
-                month="June"
-            }
-            if(month==6){
-                month="July"
-            }
-            if(month==7){
-                month="Aug"
-            }
-            if(month==8){
-                month="Sep"
-            }
-            if(month==9){
-                month="Oct"
-            }
-            if(month==10){
-                month="Nov"
-            }
-            if(month==11){
-                month="Dec"
-            }
-            document.getElementById('TimeCenter').innerHTML = month + " " + date + "  " + hour + ':' + min ;
-            document.getElementById('CalenderCenter').innerHTML = day + ', ' + month + " " + date;
-            setTimeout(clock, 1000);
-            }
-    }
+  const clock = document.getElementById("clock");
+  const dateLine = document.getElementById("date");
+  const topTime = document.getElementById("top-time");
 
-$(document).keypress(function(event){
+  if (clock) clock.textContent = time;
+  if (dateLine) dateLine.textContent = date;
+  if (topTime) {
+    topTime.textContent = document.body.classList.contains("credential-screen")
+      ? new Intl.DateTimeFormat(undefined, {
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          hourCycle: "h23",
+          minute: "2-digit",
+        }).format(now)
+      : time;
+  }
+}
 
-    $('#coversheet').css({marginTop: '-=15px'});
+updateClock();
+window.setInterval(updateClock, 1000);
 
-    //  $( "body" ).slideUp("slow", function(){
-    //   // animation complete
-    //  });
-    //alert(String.fromCharCode(event.which)); 
-});
+const profileView = document.getElementById("profile-view");
+const passwordView = document.getElementById("password-view");
+const desktopView = document.getElementById("desktop-view");
+const selectDemoUserButton = document.getElementById("select-demo-user");
+const openDemoButton = document.getElementById("open-demo");
+const returnToProfileButton = document.getElementById("return-to-profile");
+const screenContinueLink = document.querySelector(".screen-continue");
+
+if (screenContinueLink) {
+  screenContinueLink.addEventListener("click", (event) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    event.preventDefault();
+    document.body.classList.add("is-leaving");
+    window.setTimeout(() => {
+      window.location.assign(screenContinueLink.href);
+    }, 360);
+  });
+
+  window.addEventListener("pageshow", () => {
+    document.body.classList.remove("is-leaving");
+  });
+}
+
+if (profileView && passwordView && selectDemoUserButton) {
+  selectDemoUserButton.addEventListener("click", () => {
+    profileView.hidden = true;
+    passwordView.hidden = false;
+    selectDemoUserButton.setAttribute("aria-expanded", "true");
+    passwordView.querySelector("h1").focus();
+  });
+}
+
+if (profileView && passwordView && desktopView && openDemoButton && returnToProfileButton) {
+  openDemoButton.addEventListener("click", () => {
+    passwordView.hidden = true;
+    desktopView.hidden = false;
+    desktopView.querySelector("h1").focus();
+  });
+
+  returnToProfileButton.addEventListener("click", () => {
+    desktopView.hidden = true;
+    profileView.hidden = false;
+    passwordView.hidden = true;
+    selectDemoUserButton?.focus();
+  });
+}

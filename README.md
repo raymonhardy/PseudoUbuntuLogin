@@ -1,5 +1,14 @@
-# PseudoUbuntuLogin
+# Ubuntu-inspired sign-in demo
 
-This website that looks like a default Ubuntu Desktop login. To make this hack work you will need to find a friends Ubuntu desktop or laptop that he had left open. Then open this website to full screen and it makes it look like his desktop is open to login. You will also need to make sure his laptop doesn't sleep. 
+A small, local web demo inspired by Ubuntu's desktop sign-in experience. It is
+for UI practice and presentations, not for authenticating to a computer.
 
-This project is still in progress
+The password-shaped element is decorative only. The demo has no password input,
+does not ask for credentials, and does not send or store personal information.
+The visible demo label stays on screen throughout the experience.
+
+## Run locally
+
+Open `ubuntuLoginPage.html` in a browser, or serve this folder with any static
+file server. Click the lock screen to slide to the demo sign-in screen, then
+select **Open demo desktop** to see the sample desktop state.

@@ -1,40 +1,246 @@
 @charset "UTF-8";
 
-#coversheet{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: url("warty-final-ubuntu.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+:root {
+  color-scheme: dark;
+  font-family: Ubuntu, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  color: #fff;
+  background: #351b34;
 }
 
-#TopStatus{
-    text-align: right;
-    background: rgba(0, 0, 0, .1);
-} 
-
-
-#TimeCenter{
-    font-size: 6em;
-    font-weight: bold;
+* {
+  box-sizing: border-box;
 }
 
-#CalenderCenter{
-    font-family: 'Ubuntu', sans-serif;
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: #351b34 url("warty-final-ubuntu.png") center / cover fixed;
 }
 
-#InfoCenter{
-    position: absolute; 
-    top:50%; 
-    left: 50%; 
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center;
-    color: White;
+button,
+a {
+  font: inherit;
 }
 
+.screen {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgb(20 9 23 / 34%), rgb(20 9 23 / 20%));
+}
 
+.top-bar,
+.bottom-bar {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgb(20 14 22 / 54%);
+  font-size: 0.875rem;
+}
 
+.top-bar {
+  min-height: 42px;
+  gap: 16px;
+}
+
+.demo-label {
+  color: #ffd889;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.status-area,
+.status-icons {
+  display: flex;
+  align-items: center;
+}
+
+.status-area {
+  gap: 12px;
+}
+
+.status-icons {
+  gap: 6px;
+}
+
+.status-icons img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.top-bar time {
+  font-variant-numeric: tabular-nums;
+}
+
+.lock-content,
+.profile-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 35%);
+}
+
+.lock-content {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.continue-prompt {
+  margin: 30px 0 0;
+  color: rgb(255 255 255 / 84%);
+  font-size: 0.875rem;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 45%);
+}
+
+.screen-continue {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 2px;
+}
+
+.screen-continue:focus-visible {
+  outline: 3px solid #ffd889;
+  outline-offset: -6px;
+}
+
+.lock-screen.is-leaving .screen {
+  animation: slide-out-up 360ms ease-in forwards;
+}
+
+@keyframes slide-out-up {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.clock {
+  font-size: clamp(2.8rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.date {
+  margin: 12px 0 52px;
+  font-size: 1.2rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
+  font-weight: 400;
+}
+
+.intro {
+  margin: 12px 0 28px;
+  color: rgb(255 255 255 / 84%);
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 24px;
+  background: #e95420;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: none;
+  transition: background-color 140ms ease, transform 140ms ease;
+}
+
+.primary-button:hover,
+.primary-button:focus-visible {
+  background: #f46736;
+  transform: translateY(-1px);
+}
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.back-link:focus-visible {
+  outline: 3px solid #ffd889;
+  outline-offset: 3px;
+}
+
+.privacy-note {
+  margin: 18px 0 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: 0.875rem;
+}
+
+.bottom-bar {
+  color: rgb(255 255 255 / 78%);
+  font-size: 0.8125rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
+  .top-bar,
+  .bottom-bar {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .top-bar {
+    font-size: 0.75rem;
+  }
+
+  .demo-label {
+    font-size: 0.5625rem;
+  }
+
+  .status-area {
+    gap: 8px;
+  }
+
+  .status-icons {
+    gap: 3px;
+  }
+
+  .status-icons img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
