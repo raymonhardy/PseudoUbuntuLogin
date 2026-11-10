@@ -1,7 +1,4 @@
 
-
-
-
 window.onload = function() {
     clock();
         function clock() {
@@ -43,10 +40,10 @@ window.onload = function() {
                 day="Saturday"
             }
             if(month==0){
-                month="January"
+                month="Jan"
             }
             if(month==1){
-                month="Febuary"
+                month="Feb"
             }
             if(month==2){
                 month="March"
@@ -64,21 +61,21 @@ window.onload = function() {
                 month="July"
             }
             if(month==7){
-                month="August"
+                month="Aug"
             }
             if(month==8){
-                month="September"
+                month="Sep"
             }
             if(month==9){
-                month="October"
+                month="Oct"
             }
             if(month==10){
-                month="November"
+                month="Nov"
             }
             if(month==11){
-                month="December"
+                month="Dec"
             }
-            document.getElementById('TimeCenter').innerHTML = hour + ':' + min ;
+            document.getElementById('TimeCenter').innerHTML = month + " " + date + "  " + hour + ':' + min ;
             document.getElementById('CalenderCenter').innerHTML = day + ', ' + month + " " + date;
             setTimeout(clock, 1000);
             }
