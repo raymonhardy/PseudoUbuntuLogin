@@ -33,12 +33,6 @@ function updateClock() {
 updateClock();
 window.setInterval(updateClock, 1000);
 
-const profileView = document.getElementById("profile-view");
-const passwordView = document.getElementById("password-view");
-const desktopView = document.getElementById("desktop-view");
-const selectDemoUserButton = document.getElementById("select-demo-user");
-const openDemoButton = document.getElementById("open-demo");
-const returnToProfileButton = document.getElementById("return-to-profile");
 const screenContinueLink = document.querySelector(".screen-continue");
 
 if (screenContinueLink) {
@@ -57,26 +51,15 @@ if (screenContinueLink) {
   });
 }
 
-if (profileView && passwordView && selectDemoUserButton) {
-  selectDemoUserButton.addEventListener("click", () => {
-    profileView.hidden = true;
-    passwordView.hidden = false;
-    selectDemoUserButton.setAttribute("aria-expanded", "true");
-    passwordView.querySelector("h1").focus();
-  });
-}
+const inputField = document.getElementById("password-input");
 
-if (profileView && passwordView && desktopView && openDemoButton && returnToProfileButton) {
-  openDemoButton.addEventListener("click", () => {
-    passwordView.hidden = true;
-    desktopView.hidden = false;
-    desktopView.querySelector("h1").focus();
-  });
-
-  returnToProfileButton.addEventListener("click", () => {
-    desktopView.hidden = true;
-    profileView.hidden = false;
-    passwordView.hidden = true;
-    selectDemoUserButton?.focus();
-  });
-}
+inputField.addEventListener("keydown", function(event) {
+  // Check if the pressed key is "Enter"
+  if (event.key === "Enter") {
+    // Prevent the default form submission behavior if necessary
+    event.preventDefault(); 
+    
+    // Run your code here
+    console.log("Enter key pressed! Value:", event.target.value);
+  }
+});
