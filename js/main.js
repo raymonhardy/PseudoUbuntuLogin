@@ -116,6 +116,7 @@ if (passwordInput) {
   passwordInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
+      console.log("Password entered:", passwordInput.value);
       submitPassword();
     }
   });

@@ -4,9 +4,10 @@ A small, local web demo inspired by the Ubuntu 18.04 desktop sign-in
 experience. It is for UI practice and presentations, not for authenticating to
 a computer.
 
-Nothing is validated, sent, or stored. The password field accepts any text and
-is never read — pressing Enter just plays the loading animation. The demo has no
-backend and makes no network requests.
+Nothing is validated, sent, or stored. The password field accepts any text, and
+pressing Enter just plays the loading animation. For debugging, the typed value
+is written to the browser's DevTools console (`console.log`) — this stays on your
+machine. The demo has no backend and makes no network requests.
 
 ## The flow
 
