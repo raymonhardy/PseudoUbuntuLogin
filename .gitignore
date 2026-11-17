@@ -5,6 +5,3 @@
 .vscode/
 .idea/
 *.swp
-
-# Logs
-*.log
