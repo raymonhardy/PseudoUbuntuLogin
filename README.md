@@ -34,8 +34,7 @@ server, for example:
 python3 -m http.server
 ```
 
-Then visit the printed URL. (`login.html` is kept only as a redirect to
-`index.html`.)
+Then visit the printed URL.
 
 ## Run with Docker
 
@@ -53,7 +52,6 @@ removed on exit thanks to `--rm`).
 
 ```
 index.html        single-page demo (lock shield + greeter + splash)
-login.html        redirect to index.html
 css/
   base.css        resets, wallpaper, shared bars, clock, lock shield, splash
   greeter.css     the sign-in greeter (user tile + password field)
