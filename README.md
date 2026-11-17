@@ -37,6 +37,18 @@ python3 -m http.server
 Then visit the printed URL. (`login.html` is kept only as a redirect to
 `index.html`.)
 
+## Run with Docker
+
+The demo can also be served by nginx in a container:
+
+```sh
+docker build -t pseudo-ubuntu-login .
+docker run --rm -p 8080:80 pseudo-ubuntu-login
+```
+
+Then open <http://localhost:8080>. Stop it with Ctrl+C (the container is
+removed on exit thanks to `--rm`).
+
 ## Project layout
 
 ```
