@@ -17,7 +17,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: #351b34 url("warty-final-ubuntu.png") center / cover fixed;
+  overflow: hidden;
+  background: #351b34 url("../assets/img/warty-final-ubuntu.png") center / cover fixed;
 }
 
 button,
@@ -105,35 +106,113 @@ a {
   text-shadow: 0 1px 5px rgb(0 0 0 / 45%);
 }
 
-.screen-continue {
-  position: absolute;
-  z-index: 2;
+/* The lock shield sits on top of the greeter and lifts straight up. */
+.lock-shield {
+  position: fixed;
+  z-index: 10;
   inset: 0;
-  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(180deg, rgb(20 9 23 / 34%), rgb(20 9 23 / 20%)),
+    #351b34 url("../assets/img/warty-final-ubuntu.png") center / cover fixed;
+  cursor: pointer;
+  transition: transform 560ms cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
 
-.screen-continue:focus-visible {
+.lock-shield:focus-visible {
   outline: 3px solid #ffd889;
   outline-offset: -6px;
 }
 
-.lock-screen.is-leaving .screen {
-  animation: slide-out-up 360ms ease-in forwards;
+.unlocked .lock-shield {
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
-@keyframes slide-out-up {
-  to {
-    transform: translateY(-100%);
-  }
+/* Aubergine session-loading splash, shown after the password is submitted. */
+.session-splash {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2c001e;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 420ms ease, visibility 0s linear 420ms;
 }
 
-@keyframes slide-in-up {
-  from {
-    transform: translateY(100%);
+.session-splash.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 420ms ease;
+}
+
+.splash-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.splash-wordmark {
+  display: inline-flex;
+  align-items: flex-start;
+  color: rgb(255 255 255 / 95%);
+  font-size: 2.6rem;
+  font-weight: 300;
+  letter-spacing: -0.07em;
+}
+
+.splash-wordmark .wordmark-mark {
+  width: 12px;
+  height: 12px;
+  margin: 7px 0 0 5px;
+}
+
+.splash-dots {
+  display: flex;
+  gap: 11px;
+}
+
+.splash-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e95420;
+  opacity: 0.35;
+  animation: splash-pulse 1.2s ease-in-out infinite;
+}
+
+.splash-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.splash-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.splash-dots span:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.splash-dots span:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+@keyframes splash-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
   }
 
-  to {
-    transform: translateY(0);
+  50% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

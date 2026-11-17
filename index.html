@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A clearly labeled, Ubuntu-inspired sign-in screen demo."
+    />
+    <title>Ubuntu-inspired sign-in demo</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/greeter.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body class="locked">
+    <!-- Greeter (sign-in form) sits underneath the shield -->
+    <main class="screen greeter" aria-hidden="true">
+      <header class="top-bar greeter-bar">
+        <span class="demo-label"></span>
+        <time id="top-time" aria-label="Current date and time"></time>
+        <div class="status-area">
+          <div class="status-icons" role="group" aria-label="Demo system status">
+            <img src="assets/icons/nm-signal-75.svg" alt="Network" />
+            <img src="assets/icons/bluetooth-active.svg" alt="Bluetooth" />
+            <img src="assets/icons/audio-volume-high-panel.svg" alt="Sound" />
+            <img src="assets/icons/system-shutdown-panel.svg" alt="Power" />
+          </div>
+        </div>
+      </header>
+
+      <section class="greeter-content">
+        <!-- User list -->
+        <div class="user-select" id="user-select">
+          <button
+            class="user-tile"
+            id="user-tile"
+            type="button"
+            aria-controls="password-view"
+            aria-expanded="false"
+          >
+            <span class="user-tile-avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100" focusable="false">
+                <circle cx="50" cy="34" r="13"></circle>
+                <path d="M22 78c0-15 11-24 28-24s28 9 28 24"></path>
+              </svg>
+            </span>
+            <span class="user-tile-name">Admin</span>
+          </button>
+          <button class="not-listed" type="button">Not listed?</button>
+        </div>
+
+        <!-- Password entry (revealed when the user tile is chosen) -->
+        <div class="password-view" id="password-view" aria-labelledby="password-title" hidden>
+          <div class="login-avatar" aria-hidden="true">
+            <svg viewBox="0 0 100 100" focusable="false">
+              <circle cx="50" cy="34" r="13"></circle>
+              <path d="M22 78c0-15 11-24 28-24s28 9 28 24"></path>
+            </svg>
+          </div>
+          <h1 id="password-title" tabindex="-1">Admin</h1>
+          <label class="demo-text-field">
+            <input
+              type="password"
+              placeholder="Password"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              maxlength="24"
+              id="password-input"
+            />
+          </label>
+        </div>
+      </section>
+
+      <footer class="bottom-bar">
+        <span class="brand" aria-label="Ubuntu-inspired demo">
+          <span class="wordmark">ubuntu</span>
+          <svg class="cof-logo" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="3" />
+            <circle cx="24" cy="5" r="4.5" />
+            <circle cx="7.5" cy="33.5" r="4.5" />
+            <circle cx="40.5" cy="33.5" r="4.5" />
+          </svg>
+        </span>
+      </footer>
+    </main>
+
+    <!-- Lock shield: the clock screen, lifted away to reveal the greeter -->
+    <div
+      class="lock-shield"
+      id="lock-shield"
+      role="button"
+      tabindex="0"
+      aria-label="Dismiss lock screen to sign in"
+    >
+      <header class="top-bar">
+        <span class="demo-label"></span>
+        <div class="status-area">
+          <div class="status-icons" role="group" aria-label="Demo system status">
+            <img src="assets/icons/nm-signal-75.svg" alt="Network" />
+            <img src="assets/icons/bluetooth-active.svg" alt="Bluetooth" />
+            <img src="assets/icons/audio-volume-high-panel.svg" alt="Sound" />
+            <img src="assets/icons/system-shutdown-panel.svg" alt="Power" />
+          </div>
+        </div>
+      </header>
+
+      <section class="lock-content" aria-label="Lock screen clock">
+        <div>
+          <h1 class="clock" id="clock" aria-label="Current time"></h1>
+          <p class="date" id="date"></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Session-loading splash shown after the password is submitted -->
+    <div class="session-splash" id="session-splash" role="status" aria-hidden="true">
+      <div class="splash-inner">
+        <span class="splash-wordmark" aria-label="Ubuntu">ubuntu<span class="wordmark-mark" aria-hidden="true"></span></span>
+        <div class="splash-dots" aria-label="Loading session">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

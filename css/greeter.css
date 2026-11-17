@@ -1,48 +1,29 @@
-.credential-screen {
-  overflow: hidden;
-  background: #351b34;
+/* Greeter (sign-in screen) shown beneath the lock shield: flat aubergine. */
+.greeter {
+  background: #5e2750;
 }
 
-.credential-screen .screen {
-  background: #4b1748;
-  animation: slide-in-up 620ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
-}
-
-.credential-screen .top-bar {
+.greeter .top-bar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  min-height: 34px;
   gap: 12px;
-  padding: 0 16px;
   background: transparent;
-  font-size: 0.6875rem;
 }
 
-.credential-screen .demo-label {
+.greeter .demo-label {
   justify-self: start;
-  color: rgb(255 255 255 / 84%);
-  font-size: 0.5625rem;
-  letter-spacing: 0.04em;
 }
 
-.credential-screen .status-area {
+.greeter .status-area {
   justify-self: end;
 }
 
-.credential-screen .status-icons {
-  gap: 5px;
+.greeter .top-bar time {
+  justify-self: center;
 }
 
-.credential-screen .status-icons img {
-  width: 14px;
-  height: 14px;
-}
-
-.credential-screen .top-bar time {
-  font-size: 0.6875rem;
-}
-
-.password-view {
+/* Centered content area holding the user list / password entry. */
+.greeter-content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -50,7 +31,84 @@
   justify-content: center;
   padding: 24px;
   text-align: center;
-  text-shadow: 0 2px 12px rgb(0 0 0 / 25%);
+}
+
+/* User list */
+.user-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-tile {
+  display: flex;
+  width: min(360px, 86vw);
+  align-items: center;
+  gap: 18px;
+  border: 0;
+  border-radius: 10px;
+  padding: 14px 20px;
+  background: rgb(255 255 255 / 8%);
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 140ms ease;
+}
+
+.user-tile:hover,
+.user-tile:focus-visible {
+  background: rgb(255 255 255 / 14%);
+}
+
+.user-tile:focus-visible,
+.not-listed:focus-visible {
+  outline: 2px solid rgb(255 255 255 / 85%);
+  outline-offset: 2px;
+}
+
+.user-tile-avatar {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+}
+
+.user-tile-avatar svg {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: rgb(255 255 255 / 90%);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5;
+}
+
+.user-tile-name {
+  font-size: 1.05rem;
+}
+
+.not-listed {
+  border: 0;
+  background: none;
+  color: rgb(255 255 255 / 70%);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.not-listed:hover {
+  color: rgb(255 255 255 / 92%);
+}
+
+.password-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .password-view h1 {
@@ -152,22 +210,33 @@
   letter-spacing: 0.06em;
 }
 
-.credential-screen .bottom-bar {
+.greeter .bottom-bar {
   min-height: 64px;
   justify-content: center;
   padding: 0 16px;
   background: transparent;
 }
 
-.wordmark {
+.brand {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
+  gap: 11px;
   color: rgb(255 255 255 / 92%);
+}
+
+.wordmark {
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: -0.07em;
 }
 
+.cof-logo {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+/* Small orange circle reused by the loading-splash wordmark. */
 .wordmark-mark {
   width: 10px;
   height: 10px;
@@ -202,26 +271,26 @@
 }
 
 @media (max-width: 520px) {
-  .credential-screen .top-bar {
+  .greeter .top-bar {
     grid-template-columns: 1fr auto 1fr;
     gap: 6px;
     padding-right: 10px;
     padding-left: 10px;
   }
 
-  .credential-screen .demo-label {
+  .greeter .demo-label {
     font-size: 0.45rem;
   }
 
-  .credential-screen .status-area {
+  .greeter .status-area {
     gap: 5px;
   }
 
-  .credential-screen .status-icons {
+  .greeter .status-icons {
     gap: 2px;
   }
 
-  .credential-screen .status-icons img {
+  .greeter .status-icons img {
     width: 12px;
     height: 12px;
   }
